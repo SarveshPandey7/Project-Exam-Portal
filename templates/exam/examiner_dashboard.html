@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Examiner Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="fw-bold">Examiner Dashboard</h2>
+        <p class="text-muted">
+            Manage your exams
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Exam</th>
+                        <th>Status</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for exam in exams %}
+                        <tr>
+                            <td><strong>{{ exam.title }}</strong></td>
+
+                            <td>
+                                {% if exam.status == 'DRAFT' %}
+                                    <span class="badge bg-secondary">Draft</span>
+                                {% elif exam.status == 'LIVE' %}
+                                    <span class="badge bg-success">Live</span>
+                                {% else %}
+                                    <span class="badge bg-dark">Closed</span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {{ exam.duration_minutes }} min
+                            </td>
+
+                            <td>
+                                {% if exam.status == 'DRAFT' %}
+                                    <a href="{% url 'upload-questions' exam.id %}"
+                                       class="btn btn-sm btn-outline-primary">
+                                        Upload Questions
+                                    </a>
+
+                                    <a href="/admin/exam/exam/{{ exam.id }}/change/"
+                                       class="btn btn-sm btn-outline-secondary">
+                                        Edit Exam
+                                    </a>
+                                {% else %}
+                                    <span class="text-muted">
+                                        Locked
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                No exams created
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% comment %} <div>
+    <a href = "{%url 'upload_question' exam.id %}"
+</div> {% endcomment %}
+
+<div>
+    <a href="{% url 'examiner_exam_submissions' exam.id %}"
+        class="btn btn-sm btn-outline-primary">
+            View Submissions
+    </a>
+</div>
+{% endblock %}

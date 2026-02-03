@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Exam Result{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="fw-bold">
+            {{ submission.exam.title }} — Result
+        </h3>
+        <p class="text-muted">
+            Score: <strong>{{ submission.score }}</strong>
+        </p>
+    </div>
+</div>
+
+{% for item in result_data %}
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+
+        <p class="fw-semibold">
+            {{ forloop.counter }}.
+            {{ item.question.question_text }}
+        </p>
+
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">
+                Your Answer:
+                <strong>{{ item.selected|default:"Not Answered" }}</strong>
+            </li>
+            <li class="list-group-item">
+                Correct Answer:
+                <strong>{{ item.correct }}</strong>
+            </li>
+        </ul>
+
+        {% if item.is_correct %}
+            <span class="badge bg-success">
+                Correct (+{{ item.marks }})
+            </span>
+        {% else %}
+            <span class="badge bg-danger">
+                Incorrect
+            </span>
+        {% endif %}
+
+    </div>
+</div>
+{% endfor %}
+
+<div class="mt-4">
+    <a href="{% url 'student_dashboard' %}"
+       class="btn btn-outline-primary">
+        Back to Dashboard
+    </a>
+</div>
+{% endblock %}

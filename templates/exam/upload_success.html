@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Successful{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+
+                <h4 class="fw-bold text-success">
+                    Upload Successful 🎉
+                </h4>
+
+                <p class="mt-3">
+                    <strong>{{ count }}</strong> questions uploaded successfully.
+                </p>
+
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <a href="{% url 'student_dashboard' %}"
+                       class="btn btn-outline-primary">
+                        Dashboard
+                    </a>
+
+                    <a href="/admin/exam/question/"
+                       class="btn btn-outline-secondary">
+                        View Questions
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

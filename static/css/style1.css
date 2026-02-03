@@ -1,0 +1,16 @@
+.option-hover {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+}
+
+.option-hover:hover {
+        background-color: #d4e1ef;
+}
+
+.form-check-input {
+        transform: scale(1.2);
+        margin-top: 0.35rem;
+        margin: .65rem;
+        accent-color: #0d6efd;
+}
+

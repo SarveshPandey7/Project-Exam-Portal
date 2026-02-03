@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Submissions — {{ exam.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="fw-bold">
+            Submissions — {{ exam.title }}
+        </h3>
+        <p class="text-muted">
+            Total Attempts: {{ submissions|length }}
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Student</th>
+                        <th>Score</th>
+                        <th>Started At</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for sub in submissions %}
+                        <tr>
+                            <td>{{ sub.student.username }}</td>
+                            <td>
+                                <strong>{{ sub.score }}</strong>
+                            </td>
+                            <td>
+                                {{ sub.started_at|date:"Y-m-d H:i" }}
+                            </td>
+                            <td>
+                                <span class="badge bg-success">
+                                    Submitted
+                                </span>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                No submissions yet
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="{% url 'examiner-dashboard' %}"
+       class="btn btn-outline-secondary">
+        Back to Dashboard
+    </a>
+</div>
+{% endblock %}

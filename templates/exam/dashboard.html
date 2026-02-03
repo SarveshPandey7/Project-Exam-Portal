@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="fw-bold">Student Dashboard</h2>
+        <p class="text-muted">
+            View your exams and results
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Exam</th>
+                        <th>Exam Status</th>
+                        <th>Your Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in dashboard_data %}
+                        <tr>
+                            <!-- Exam Title -->
+                            <td>
+                                <strong>{{ item.exam.title }}</strong>
+                            </td>
+
+                            <!-- Exam Lifecycle Status -->
+                            <td>
+                                {% if item.exam.status == 'DRAFT' %}
+                                    <span class="badge bg-secondary">Draft</span>
+                                {% elif item.exam.status == 'LIVE' %}
+                                    <span class="badge bg-success">Live</span>
+                                {% elif item.exam.status == 'CLOSED' %}
+                                    <span class="badge bg-dark">Closed</span>
+                                {% endif %}
+                            </td>
+
+                            <!-- Student Attempt Status -->
+                            <td>
+                                {% if item.attempted %}
+                                    <span class="badge bg-info text-dark">
+                                        Attempted
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">
+                                        Not Attempted
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <!-- Action Column -->
+                            <td>
+                                {% if item.attempted %}
+                                    <span class="me-2">
+                                        Score:
+                                        <strong>{{ item.submission.score }}</strong>
+                                    </span>
+                                    <a href="{% url 'exam_result' item.submission.id %}"
+                                       class="btn btn-outline-primary btn-sm">
+                                        View Result
+                                    </a>
+
+                                {% elif item.exam.status == 'LIVE' %}
+                                    <a href="{% url 'start_exam' item.exam.id %}"
+                                       class="btn btn-primary btn-sm">
+                                        Start Exam
+                                    </a>
+
+                                {% else %}
+                                    <span class="text-muted">
+                                        Not Available
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                No exams available
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
