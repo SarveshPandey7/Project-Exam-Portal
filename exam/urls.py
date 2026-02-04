@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:exam_id>/upload/success/', views.upload_success, name= "upload-success"),
     path('dashboard/' , views.student_dashboard , name = "student_dashboard"),
     path('examiner/dashboard/' , views.examiner_dashboard , name = 'examiner_dashboard'),
-    path('examiner/exam/<int:exam_id>/submissions' , views.examiner_exam_submissions , name="examiner_exam_submissions"),
+    path('examiner/exam/<int:exam_id>/submissions/' , views.examiner_exam_submissions , name="examiner_exam_submissions"),
 ]

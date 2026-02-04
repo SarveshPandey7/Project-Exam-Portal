@@ -15,14 +15,14 @@
 <div class="card shadow-sm">
     <div class="card-body">
 
-        <div class="table-responsive">
-            <table class="table table-striped align-middle">
+        <div class="table-responsive ">
+            <table class="table table-striped align-middle ">
                 <thead class="table-dark">
                     <tr>
                         <th>Exam</th>
                         <th>Status</th>
                         <th>Duration</th>
-                        <th>Actions</th>
+                        <th class = "text-center">Actions</th>
                     </tr>
                 </thead>
 
@@ -37,7 +37,7 @@
                                 {% elif exam.status == 'LIVE' %}
                                     <span class="badge bg-success">Live</span>
                                 {% else %}
-                                    <span class="badge bg-dark">Closed</span>
+                                    <span class="badge bg-danger">Closed</span>
                                 {% endif %}
                             </td>
 
@@ -46,21 +46,29 @@
                             </td>
 
                             <td>
+                            <div class="d-flex justify-content-center gap-3">
                                 {% if exam.status == 'DRAFT' %}
-                                    <a href="{% url 'upload-questions' exam.id %}"
-                                       class="btn btn-sm btn-outline-primary">
+                                    <a href="{% url 'upload_question' exam.id %}"
+                                       class="btn btn-sm btn-outline-success">
                                         Upload Questions
                                     </a>
 
                                     <a href="/admin/exam/exam/{{ exam.id }}/change/"
-                                       class="btn btn-sm btn-outline-secondary">
+                                       class="btn btn-sm btn-outline-warning">
                                         Edit Exam
+                                    </a>
+
+                                    <a href="{% url 'examiner_exam_submissions' exam.id %}"
+                                    class="btn btn-sm btn-outline-info">
+                                         View Submissions
                                     </a>
                                 {% else %}
                                     <span class="text-muted">
                                         Locked
                                     </span>
                                 {% endif %}
+                            </div>  
+
                             </td>
                         </tr>
                     {% empty %}
@@ -81,10 +89,5 @@
     <a href = "{%url 'upload_question' exam.id %}"
 </div> {% endcomment %}
 
-<div>
-    <a href="{% url 'examiner_exam_submissions' exam.id %}"
-        class="btn btn-sm btn-outline-primary">
-            View Submissions
-    </a>
-</div>
+
 {% endblock %}
