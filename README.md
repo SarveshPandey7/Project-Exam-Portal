@@ -22,11 +22,11 @@ This platform provides separate workflows for students and examiners, enforces s
 <h2> 👩‍🏫 Examiner </h2>
 <ul>
   <li>Examiner dashboard</li>
-      <li>Create exams (via admin shortcut</li>
-      <li>Upload questions using Excel</li>
-      <li>Automatic exam set generation</li>
-      <li>Randomized question order per student</li>
-      <li>View student submissions & scores</li>
+  <li>Create exams (via admin shortcut</li>
+  <li>Upload questions using Excel</li>
+  <li>Automatic exam set generation</li>
+  <li>Randomized question order per student</li>
+  <li>View student submissions & scores</li>
 </ul>
 
 <h2> ⚙️ System </h2>
