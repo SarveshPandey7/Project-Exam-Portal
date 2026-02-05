@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'exam',
     'users',
     'submission',
+    'pages',
     
     
     #crispy
@@ -149,3 +150,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.Custom_User'
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'student_dashboard'
+
+LOGOUT_REDIRECT_URL = 'landing_page'
+

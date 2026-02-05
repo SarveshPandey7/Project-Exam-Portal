@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Online Examination Platform{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+
+            <h1 class="fw-bold mb-3">
+                Online Examination Platform
+            </h1>
+
+            <p class="lead text-muted mb-4">
+                Secure, timed, and automated online exams with randomized question sets.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'login' %}"
+                   class="btn btn-outline-primary btn-lg">
+                    Student Login
+                </a>
+
+                <a href="{% url 'login' %}"
+                   class="btn btn-outline-secondary btn-lg">
+                    Examiner Login
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
