@@ -23,7 +23,7 @@ def generate_exam_set(exam):
     
     #we have set_code in models.py for ExamSet
     for set_code in set_codes:
-        exam_set , created = ExamSet.objects.create(exam=exam , set_code=set_code)
+        exam_set = ExamSet.objects.create(exam=exam , set_code=set_code)
         
         #shadow copy of questions
         shuffled_questions = questions [:]

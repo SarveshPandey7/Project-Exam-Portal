@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse , HttpResponseForbidden
 from exam.forms import QuestionUploadForm
 from exam.services import upload_question_from_excel , generate_exam_set
-from exam.models import Exam , SetQuestion
+from exam.models import Exam , SetQuestion , Question
 from submission.models import Submission , StudentAnswer
 from django.utils import timezone
 from datetime import timedelta
@@ -174,9 +174,10 @@ def upload_questions(request , exam_id):
         form = QuestionUploadForm(request.POST , request.FILES)
         if form.is_valid():
             file = form.cleaned_data['file']
+            Question.objects.filter(exam=exam).delete()
             upload_question_from_excel(file , exam)
             generate_exam_set(exam)
-            return redirect('exam/upload_success.html' , exam_id = exam.id)
+            return redirect('upload_success' , exam_id = exam.id)
         
     else:
         form = QuestionUploadForm()
