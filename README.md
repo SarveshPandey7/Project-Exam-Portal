@@ -22,7 +22,7 @@ This platform provides separate workflows for students and examiners, enforces s
 <h2> 👩‍🏫 Examiner </h2>
 <ul>
   <li>Examiner dashboard</li>
-  <li>Create exams (via admin shortcut</li>
+  <li>Create exams (via admin shortcut)</li>
   <li>Upload questions using Excel</li>
   <li>Automatic exam set generation</li>
   <li>Randomized question order per student</li>
@@ -38,3 +38,45 @@ This platform provides separate workflows for students and examiners, enforces s
   <li>Role-aware navigation</li>
   <li>Bootstrap 5 + crispy-forms UI</li>
 </ul>
+
+<h2>🧠 Architecture Highlights</h2>
+<ul>
+  <li>ExamSet & SetQuestion treated as derived data</li>
+  <li>Sets are regenerated automatically after uploads</li>
+  <li>Server-side timing (refresh-safe & tamper-proof)</li>
+  <li>Django Admin used only as a control panel</li>
+  <li>No shell/manual intervention required after setup</li>
+</ul>
+
+
+<h2>🛠️ Tech Stack</h2>
+<ul>
+  <li>Backend: Django</li>
+  <li>Database: MySQL</li>
+  <li>Frontend: Bootstrap 5, Django Crispy Forms</li>
+  <li>Auth: Django built-in authentication</li>
+  <li>Data Upload: Excel (openpyxl / pandas)</li>
+  <li> Environment: Python Virtualenv </li>
+</ul>
+
+<h2>🧪 Application Flow</h2>
+<ul>
+  <li>Examiner creates exam (DRAFT)</li>
+  <li>Examiner uploads Excel sheet</li>
+  <li>Exam sets generated automatically</li>
+  <li>Exam marked LIVE</li>
+  <li>Students attempt exam (timed)</li>
+  <li>Auto evaluation & result generation</li>
+  <li>Examiner reviews submissions</li>
+</ul>
+
+<h2>🔐 Security & Integrity</h2>
+<ul>
+  <li>POST-based logout (CSRF-safe)</li>
+  <li>Single attempt enforced</li>
+  <li>Exam state locking (DRAFT / LIVE / CLOSED)</li>
+  <li>Backend-authoritative evaluation</li>
+  <li>No client-side trust</li>
+</ul>
+
+<h3> ScreenShots are Available in Screenshot folder </h3>
